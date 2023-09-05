@@ -1,0 +1,45 @@
+<div style="padding: 50px;">
+
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <ng-container *ngFor="let disCol of tableHeader;"> 
+                <th *ngIf="!disCol.sort"
+                [style.textAlign]="disCol.align"
+                [style.width]="disCol.width">
+                {{disCol.name}}
+            </th>
+
+            <th *ngIf="disCol.sort" class="clickable"
+                [style.textAlign]="disCol.align"
+                [style.width]="disCol.width"
+                [appSort]="tableData" data-order="desc" [attr.data-name]="disCol.key"
+                scope="col">{{disCol.name}}  <i class="fa fa-fw fa-sort"></i></th>
+        </ng-container>
+        </tr>
+    </thead>
+    <tbody>
+            <tr *ngFor="let columnData of tableData ">
+            <td *ngFor="let columnHead of tableHeader"
+                [style.width]="columnHead.width"
+                [style.color]="columnHead.color"            
+                [style.textAlign]="columnHead.align">
+
+              <div *ngIf="columnHead.type == 'string'">{{ columnData[columnHead.key] }}</div>
+              <div *ngIf="columnHead.type == 'input'">
+                <input id="columnHead.key" [(ngModel)]= "columnData[columnHead.key]"/>
+              </div>
+              <div *ngIf="columnHead.type == 'BTN'">
+                <i class="fa fa-trash-o" aria-hidden="true" style="padding: 10px;"  *ngIf="columnHead.isDelete"(click)="deleteData(columnData)"></i>
+                <i class="fa fa-floppy-o" aria-hidden="true" *ngIf="columnHead.isSave "  (click)="saveData(columnData)"></i> 
+                <i class="fa fa-pencil" aria-hidden="true" *ngIf="columnHead.isEdit" class="btn btn-primary" (click)="editData(columnData)"></i>
+              </div>
+              
+            </td>
+          </tr>
+        
+    </tbody>
+  </table>
+</div>
+

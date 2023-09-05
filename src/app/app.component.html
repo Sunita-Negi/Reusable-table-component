@@ -1,0 +1,6 @@
+<app-table *ngIf="tableData.length"
+[tableHeader]="tableHeader"
+[tableData]="tableData"
+(deleteDataAction)="deletedataAction($event)"
+(editDataAction)="editDataAction($event)"
+(saveDataAction)="saveDataAction($event)"></app-table>
