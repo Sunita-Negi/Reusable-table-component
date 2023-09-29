@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-            <tr *ngFor="let columnData of tableData ">
+            <tr *ngFor="let columnData of tableData | paginate: { itemsPerPage: 10, currentPage: p }">
             <td *ngFor="let columnHead of tableHeader"
                 [style.width]="columnHead.width"
                 [style.color]="columnHead.color"            
@@ -38,6 +38,8 @@
               
             </td>
           </tr>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
         
     </tbody>
   </table>

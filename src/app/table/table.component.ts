@@ -11,7 +11,7 @@ import { Subscription, interval } from 'rxjs';
 export class TableComponent implements OnInit {
 
   private subscription: Subscription;
-
+  p= 1;
   public count: number = 0;
   @Input() tableHeader: any = [];
 
